@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-a0xx6QQjQFEl3BVHxY4soTXMFurPf9rWKnRLQLOkzg4='; connect-src 'self' https://*.celowallet.app https://*.celo.org wss://walletconnect.celo.org wss://*.walletconnect.com wss://*.walletconnect.org https://api.github.com https://eth-mainnet.alchemyapi.io https://unstoppabledomains.g.alchemy.com https://cloudflare-ipfs.com; img-src 'self' data: https://cloudflare-ipfs.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; base-uri 'self'; form-action 'self'; frame-ancestors 'none'" />
+    <title>PARYS Wallet | Use PARYS on the web or on your desktop</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png" />
+    <link rel="manifest" href="/static/site.webmanifest" />
+    <link rel="mask-icon" href="/static/parys-full-black.svg" color="#35d07f" />
+    <link rel="shortcut icon" href="/static/parys-full-black.svg" />
+    <meta name="msapplication-TileColor" content="#35d07f" />
+    <meta name="msapplication-config" content="/static/browserconfig.xml" />
+    <meta name="theme-color" content="#FFFFFF" />
+
+    <meta name="application-name" content="PARYS Wallet" />
+    <meta name="keywords" content="PARYS Wallet Web Browser Online" />
+    <meta name="description" content="A simple, lightweight wallet for the PARYS network. Manage your funds in a browser or on your desktop." />
+
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-mobile-web-app-title" content="PARYS Wallet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <meta property="og:url" content="https://parisii.io" />
+    <meta property="og:title" content="PARYS Wallet" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://img1.wsimg.com/isteam/ip/a71ea9be-7fd2-48ef-a8f6-f53faab4b25d/signal-2023-01-06-09-39-29-276.png" />
+    <meta
+      property="og:description"
+      content="A simple, lightweight wallet for the PARYS network. Manage your Carbon and Crypto investments in a browser or on your desktop."
+    />
+    <meta name="twitter:title" content="PARYS Wallet" />
+    <meta
+      name="twitter:description"
+      content="A simple wallet, lightweight for the PARYS network. Manage your Carbon and Crypto investments in a browser or on your desktop."
+    />
+    <meta name="twitter:image" content="https://img1.wsimg.com/isteam/ip/a71ea9be-7fd2-48ef-a8f6-f53faab4b25d/signal-2023-01-06-09-39-29-276.png" />
+    <meta name="twitter:card" content="summary" />
+
+    <style>
+      * {
+        transition: all 0.3s ease;
+      }
+      body {
+        font-family: 'Assistant', sans-serif;
+        font-weight: 400;
+        font-size: 11.5pt;
+        color: #2e3338;        
+        text-rendering: geometricPrecision;
+      }
+      @media only screen and (max-width: 479px) {
+        /* phones */
+        body {
+          font-size: 0.9em;
+        }
+      }
+      #loader{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+      .loader-grid{
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+      .logo{
+        height: 20em;
+        position: fixed;
+        left: calc(50% - 6em);
+        bottom: 3em;
+      }
+      .animate{
+        animation: pulse 3s infinite;
+      }
+      .ellipse{
+        position: absolute;
+        top: calc(55% - 120px);
+        left: calc(50% - 102px);
+        opacity: 0;
+      }
+      .echo1{
+        position: absolute;
+        top: calc(50% - 214px);
+        left: calc(51% - 183px);
+        animation-delay: 0.25s;
+        opacity: 0;
+      }
+      .echo2{
+        position: absolute;
+        top: calc(45% - 370px);
+        left: calc(52% - 316px);
+        animation-delay: 0.5s;
+        opacity: 0;
+      }
+      .echo3{
+        position: absolute;
+        top: calc(48% - 450px);
+        left: calc(53% - 450px);
+        animation-delay: 0.75s;
+        opacity: 0;
+      }
+      .loader--hide {
+        opacity: 1;        
+        animation: fadeOut 0.75s forwards;        
+      }
+      .fade-in{
+        opacity: 0;
+        animation: fadeIn 0.75s forwards;
+      }
+      @keyframes pulse {
+        0% { opacity: 0; }
+        85% { opacity: 1; } 
+        100% { opacity: 0; }
+      }
+      @keyframes fadeOut {
+        0% { opacity: 1 }
+        100% { opacity: 0; display: none }
+      }
+      @keyframes fadeIn {
+        0% { opacity: 0 }
+        100% { opacity: 1; }
+      }
+    </style>    
+    <script defer src="/bundle.js" integrity="sha256-%BUNDLE_HASH%" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    
+    <div id="loader">
+      <div class="loader-grid">
+        <svg class="animate ellipse" width="205" height="240" x="40" y="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M166.577 146.201C145.392 197.963 99.5149 228.176 64.1089 213.685C28.7029 199.193 17.175 145.485 38.3607 93.7229C59.5463 41.9611 105.423 11.7475 140.829 26.2389C176.235 40.7303 187.763 94.439 166.577 146.201Z" fill="#35D07F" fill-opacity="0.65"/>
+          <path d="M166.577 146.201C145.392 197.963 99.5149 228.176 64.1089 213.685C28.7029 199.193 17.175 145.485 38.3607 93.7229C59.5463 41.9611 105.423 11.7475 140.829 26.2389C176.235 40.7303 187.763 94.439 166.577 146.201Z" fill="#35D07F" fill-opacity="0.65"/>
+        </svg>
+        <svg class="animate echo1" width="366" height="428" viewBox="0 0 366 428" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M295.09 259.861C276.339 305.672 246.693 341.865 214.016 363.386C181.329 384.913 145.806 391.658 115.037 379.065C84.2693 366.472 63.6691 336.755 55.4556 298.488C47.2445 260.233 51.4817 213.64 70.2319 167.829C88.982 122.017 118.628 85.8246 151.305 64.304C183.992 42.777 219.516 36.0316 250.284 48.6247C281.052 61.2179 301.652 90.9344 309.866 129.202C318.077 167.457 313.84 214.05 295.09 259.861Z" stroke="#35D07F" stroke-opacity="0.5" stroke-width="4"/>
+        </svg>
+        <svg class="animate echo2" width="632" height="740" viewBox="0 0 632 740" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M512.056 450.071C479.505 529.602 428.008 592.516 371.135 629.971C314.256 667.431 252.146 679.35 198.171 657.259C144.197 635.168 108.267 583.122 93.9744 516.531C79.6834 449.949 87.0754 368.984 119.627 289.453C152.178 209.923 203.674 147.009 260.547 109.554C317.427 72.0935 379.537 60.1741 433.511 82.2654C487.486 104.357 523.415 156.403 537.708 222.993C551.999 289.575 544.607 370.541 512.056 450.071Z" stroke="#35D07F" stroke-opacity="0.35" stroke-width="3"/>
+        </svg>
+        <svg class="animate echo3" width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M729.792 500.174C683.395 613.534 609.983 703.236 528.873 756.654C447.755 810.077 359.083 827.134 281.969 795.572C204.854 764.01 153.587 689.677 133.204 594.71C112.823 499.752 123.371 384.321 169.768 270.961C216.165 157.601 289.577 67.899 370.687 14.4808C451.805 -38.9422 540.477 -55.9993 617.591 -24.437C694.706 7.12536 745.972 81.458 766.356 176.425C786.737 271.383 776.189 386.814 729.792 500.174Z" stroke="#35D07F" stroke-opacity="0.2" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Hash for CSP, must be updated in headers whenever this is changed: sha256-a0xx6QQjQFEl3BVHxY4soTXMFurPf9rWKnRLQLOkzg4= -->
+    <script>window.global = globalThis; document.getElementById('loader').setAttribute('data-start', Date.now())</script>
+
+  </body>
+</html>

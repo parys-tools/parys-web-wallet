@@ -1,0 +1,21 @@
+{
+  "name": "parys-web-wallet",
+  "version": "1.0.0",
+  "description": "A lightweight web and desktop wallet for the PARYS network",
+  "main": "main.js",
+  "keywords": [
+    "PARYS",
+    "wallet"
+  ],
+  "author": "Jason R. Cooner",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parys-tools/parys-web-wallet"
+  },
+  "homepage": "https://parisii.io",
+  "license": "MIT",
+  "dependencies": {
+    "electron-updater": "^4.6.5",
+    "@ledgerhq/hw-transport-node-hid-noevents": "^5.51.1"
+  }
+}
